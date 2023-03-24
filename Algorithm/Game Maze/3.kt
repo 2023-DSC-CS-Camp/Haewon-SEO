@@ -2,22 +2,6 @@ import java.util.*
 
 data class Point(val x: Int, val y: Int, val step: Int)
 
-fun main() {
-    val input = readLine()!!.split(" ")
-    val n = input[0].toInt()
-    val m = input[1].toInt()
-
-    val maze = Array(n) { IntArray(m) }
-    for (i in 0 until n) {
-        val row = readLine()!!
-        for (j in 0 until m) {
-            maze[i][j] = row[j] - '0'
-        }
-    }
-
-    println(solution(maze))
-}
-
 fun solution(maze: Array<IntArray>): Int {
     val n = maze.size
     val m = maze[0].size
@@ -38,7 +22,7 @@ fun solution(maze: Array<IntArray>): Int {
         for (i in 0..3) {
             val nx = cur.x + dx[i]
             val ny = cur.y + dy[i]
-            if (nx in 0 until n && ny in 0 until m && maze[nx][ny] == 1 && !visited[nx][ny]) {
+            if (nx in 0 until n && ny in 0 until m && maze[nx][ny] == 0 && !visited[nx][ny]) {
                 visited[nx][ny] = true
                 q.add(Point(nx, ny, cur.step + 1))
             }
